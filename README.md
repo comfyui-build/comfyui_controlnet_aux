@@ -1,48 +1,48 @@
-# ComfyUI's ControlNet Auxiliary Preprocessors
+# ComfyUI的ControlNet辅助预处理器
 ![](./examples/example_mesh_graphormer.png)
-Plug-and-play [ComfyUI](https://github.com/comfyanonymous/ComfyUI) node sets for making [ControlNet](https://github.com/lllyasviel/ControlNet/) hint images
+即插即用的[ComfyUI](https://github.com/comfyanonymous/ComfyUI)节点集，用于制作[ControlNet](https://github.com/lllyasviel/ControlNet/)提示图像
 
-The code is copy-pasted from the respective folders in https://github.com/lllyasviel/ControlNet/tree/main/annotator and connected to [the 🤗 Hub](https://huggingface.co/lllyasviel/Annotators).
+代码是从https://github.com/lllyasviel/ControlNet/tree/main/annotator中的相应文件夹复制粘贴的，并连接到[🤗 Hub](https://huggingface.co/lllyasviel/Annotators)。
 
-All credit & copyright goes to https://github.com/lllyasviel.
+所有信用和版权归https://github.com/lllyasviel所有。
 
 # Marigold
-Check out Marigold Depth Estimator which can generate very detailed and sharp depth map from high-resolution still images. The mesh created by it is even 3D-printable. Due to diffusers, it can't be implemented in this extension but there is an Comfy implementation by Kijai
+查看Marigold深度估计器，它可以从高分辨率静态图像生成非常详细和清晰的深度图。它创建的网格甚至可以3D打印。由于扩散器的原因，它无法在此扩展中实现，但Kijai有一个Comfy实现
 https://github.com/kijai/ComfyUI-Marigold
 
 ![](./examples/example_marigold_flat.jpg)
 ![](./examples/example_marigold.png)
 
-# Updates
-Go to [Update page](./UPDATES.md) to follow updates
+# 更新
+前往[更新页面](./UPDATES.md)以关注更新
 
-# Installation:
-## Using ComfyUI Manager (recommended):
-Install [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager) and do steps introduced there to install this repo.
+# 安装：
+## 使用ComfyUI Manager（推荐）：
+安装[ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)并按照那里的步骤安装此仓库。
 
-## Alternative:
-If you're running on Linux, or non-admin account on windows you'll want to ensure `/ComfyUI/custom_nodes` and `comfyui_controlnet_aux` has write permissions.
+## 替代方案：
+如果你在Linux上运行，或者在Windows上的非管理员账户，你需要确保`/ComfyUI/custom_nodes`和`comfyui_controlnet_aux`具有写权限。
 
-There is now a **install.bat** you can run to install to portable if detected. Otherwise it will default to system and assume you followed ConfyUI's manual installation steps. 
+现在有一个**install.bat**你可以运行来安装到便携设备（如果检测到）。否则，它将默认安装到系统，并假设你已经按照ComfyUI的手动安装步骤操作。
 
-If you can't run **install.bat** (e.g. you are a Linux user). Open the CMD/Shell and do the following:
-  - Navigate to your `/ComfyUI/custom_nodes/` folder
-  - Run `git clone https://github.com/Fannovel16/comfyui_controlnet_aux/`
-  - Navigate to your `comfyui_controlnet_aux` folder
-    - Portable/venv:
-       - Run `path/to/ComfUI/python_embeded/python.exe -s -m pip install -r requirements.txt`
-	- With system python
-	   - Run `pip install -r requirements.txt`
-  - Start ComfyUI
+如果你无法运行**install.bat**（例如，你是Linux用户）。打开CMD/Shell并执行以下操作：
+  - 导航到你的`/ComfyUI/custom_nodes/`文件夹
+  - 运行`git clone https://github.com/Fannovel16/comfyui_controlnet_aux/`
+  - 导航到你的`comfyui_controlnet_aux`文件夹
+    - 便携/venv：
+       - 运行`path/to/ComfUI/python_embeded/python.exe -s -m pip install -r requirements.txt`
+	- 使用系统python
+	   - 运行`pip install -r requirements.txt`
+  - 启动ComfyUI
 
-# Nodes
-Please note that this repo only supports preprocessors making hint images (e.g. stickman, canny edge, etc).
-All preprocessors except Inpaint are intergrated into `AIO Aux Preprocessor` node. 
-This node allow you to quickly get the preprocessor but a preprocessor's own threshold parameters won't be able to set.
-You need to use its node directly to set thresholds.
+# 节点
+请注意，此仓库仅支持制作提示图像（例如火柴人、canny边缘等）的预处理器。
+除了Inpaint之外的所有预处理器都集成到`AIO Aux Preprocessor`节点中。
+此节点允许你快速获取预处理器，但预处理器自身的阈值参数无法设置。
+你需要直接使用其节点来设置阈值。
 
-# Nodes (sections are categories in Comfy menu)
-## Line Extractors
+# 节点（各部分是Comfy菜单中的分类）
+## 线条提取器 - Line Extractors
 | Preprocessor Node           | sd-webui-controlnet/other |          ControlNet/T2I-Adapter           |
 |-----------------------------|---------------------------|-------------------------------------------|
 | Binary Lines                | binary                    | control_scribble                          |
@@ -61,7 +61,7 @@ You need to use its node directly to set thresholds.
 | Scribble PiDiNet Lines      | scribble_pidinet          | control_v11p_sd15_scribble <br> control_scribble |
 | AnyLine Lineart             |                           | mistoLine_fp16.safetensors <br> mistoLine_rank256 <br> control_v11p_sd15s2_lineart_anime <br> control_v11p_sd15_lineart |
 
-## Normal and Depth Estimators
+## 法线和深度估计器 - Normal and Depth Estimators
 | Preprocessor Node           | sd-webui-controlnet/other |          ControlNet/T2I-Adapter           |
 |-----------------------------|---------------------------|-------------------------------------------|
 | MiDaS Depth Map           | (normal) depth            | control_v11f1p_sd15_depth <br> control_depth <br> t2iadapter_depth |
@@ -77,7 +77,7 @@ You need to use its node directly to set thresholds.
 | Metric3D Normal           |                           | control_v11p_sd15_normalbae |
 | Depth Anything V2         |                           | [Depth-Anything](https://huggingface.co/spaces/LiheYoung/Depth-Anything/blob/main/checkpoints_controlnet/diffusion_pytorch_model.safetensors) |
 
-## Faces and Poses Estimators
+## 面部和姿态估计器 - Faces and Poses Estimators
 | Preprocessor Node           | sd-webui-controlnet/other |          ControlNet/T2I-Adapter           |
 |-----------------------------|---------------------------|-------------------------------------------|
 | DWPose Estimator                 | dw_openpose_full          | control_v11p_sd15_openpose <br> control_openpose <br> t2iadapter_openpose |
@@ -85,18 +85,18 @@ You need to use its node directly to set thresholds.
 | MediaPipe Face Mesh         | mediapipe_face            | controlnet_sd21_laion_face_v2             | 
 | Animal Estimator                 | animal_openpose           | [control_sd15_animal_openpose_fp16](https://huggingface.co/huchenlei/animal_openpose/blob/main/control_sd15_animal_openpose_fp16.pth) |
 
-## Optical Flow Estimators
+## 光流估计器 - Optical Flow Estimators
 | Preprocessor Node           | sd-webui-controlnet/other |          ControlNet/T2I-Adapter           |
 |-----------------------------|---------------------------|-------------------------------------------|
 | Unimatch Optical Flow       |                           | [DragNUWA](https://github.com/ProjectNUWA/DragNUWA) |
 
-### How to get OpenPose-format JSON?
-#### User-side
-This workflow will save images to ComfyUI's output folder (the same location as output images). If you haven't found `Save Pose Keypoints` node, update this extension
+### 如何获取OpenPose格式的JSON？
+#### 用户端
+此工作流程将图像保存到ComfyUI的输出文件夹（与输出图像的同一位置）。如果你还没有找到`Save Pose Keypoints`节点，请更新此扩展
 ![](./examples/example_save_kps.png)
 
-#### Dev-side
-An array of [OpenPose-format JSON](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/02_output.md#json-output-format) corresponsding to each frame in an IMAGE batch can be gotten from DWPose and OpenPose using `app.nodeOutputs` on the UI or `/history` API endpoint. JSON output from AnimalPose uses a kinda similar format to OpenPose JSON:
+#### 开发者端
+一个与IMAGE批次中每个帧对应的[OpenPose格式JSON](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/02_output.md#json-output-format)数组可以通过在UI上使用`app.nodeOutputs`或在`/history` API端点上使用DWPose和OpenPose获取。AnimalPose的JSON输出使用与OpenPose JSON类似的格式：
 ```
 [
     {
@@ -113,7 +113,7 @@ An array of [OpenPose-format JSON](https://github.com/CMU-Perceptual-Computing-L
 ]
 ```
 
-For extension developers (e.g. Openpose editor):
+对于扩展开发者（例如Openpose编辑器）：
 ```js
 const poseNodes = app.graph._nodes.filter(node => ["OpenposePreprocessor", "DWPreprocessor", "AnimalPosePreprocessor"].includes(node.type))
 for (const poseNode of poseNodes) {
@@ -122,7 +122,7 @@ for (const poseNode of poseNodes) {
 }
 ```
 
-For API users:
+对于API用户：
 Javascript
 ```js
 import fetch from "node-fetch" //Remember to add "type": "module" to "package.json"
@@ -157,7 +157,7 @@ for o in history['outputs']:
         if 'openpose_json' in node_output:
             print(json.loads(node_output['openpose_json'][0])) #An list containing Openpose JSON for each frame
 ```
-## Semantic Segmentation
+## 语义分割 - Semantic Segmentation
 | Preprocessor Node           | sd-webui-controlnet/other |          ControlNet/T2I-Adapter           |
 |-----------------------------|---------------------------|-------------------------------------------|
 | OneFormer ADE20K Segmentor  | oneformer_ade20k          | control_v11p_sd15_seg                     |
@@ -170,36 +170,36 @@ for o in history['outputs']:
 | Color Pallete               | color                     | t2iadapter_color                          |
 | Content Shuffle             | shuffle                   | t2iadapter_style                          |
 
-## Recolor
+## ## 重新着色 - Recolor
 | Preprocessor Node           | sd-webui-controlnet/other |          ControlNet/T2I-Adapter           |
 |-----------------------------|---------------------------|-------------------------------------------|
 | Image Luminance             | recolor_luminance         | [ioclab_sd15_recolor](https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/ioclab_sd15_recolor.safetensors) <br> [sai_xl_recolor_256lora](https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/sai_xl_recolor_256lora.safetensors) <br> [bdsqlsz_controlllite_xl_recolor_luminance](https://huggingface.co/bdsqlsz/qinglong_controlnet-lllite/resolve/main/bdsqlsz_controlllite_xl_recolor_luminance.safetensors) |
 | Image Intensity             | recolor_intensity         | Idk. Maybe same as above? |
 
-# Examples
-> A picture is worth a thousand words
+# 示例
+> 一张图片胜过千言万语
 
-Credit to https://huggingface.co/thibaud/controlnet-sd21 for most examples below. You can get the same kind of results from preprocessor nodes of this repo.
-## Line Extractors
-### Canny Edge
+以下大多数示例的功劳归于https://huggingface.co/thibaud/controlnet-sd21。你可以从本仓库的预处理器节点获得类似的结果。
+## 线条提取器
+### Canny边缘 - Canny Edge
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_canny.png)
-### HED Lines
+### HED线条 - HED Lines
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_hed.png)
-### Realistic Lineart
+### 真实感线条艺术 - Realistic Lineart
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_lineart.png)
-### Scribble/Fake Scribble
+### 涂鸦/假涂鸦 - Scribble/Fake Scribble
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_scribble.png)
-### TEED Soft-Edge Lines
+### TEED软边缘线条 - TEED Soft-Edge Lines
 ![](./examples/example_teed.png)
-### Anyline Lineart
+### 任意线条艺术 - Anyline Lineart
 ![](./examples/example_anyline.png)
 
-## Normal and Depth Map
-### Depth (idk the preprocessor they use)
+## 法线和深度图
+### 深度（不知道他们使用的预处理器） - Depth (idk the preprocessor they use)
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_depth.png)
-## Zoe - Depth Map
+## Zoe - 深度图 - Zoe - Depth Map
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_zoedepth.png)
-## BAE - Normal Map
+## BAE - 法线图 - BAE - Normal Map
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_normalbae.png)
 ## MeshGraphormer
 ![](./examples/example_mesh_graphormer.png)
@@ -212,7 +212,7 @@ Credit to https://huggingface.co/thibaud/controlnet-sd21 for most examples below
 ## Depth Anything V2
 ![](./examples/example_depth_anything_v2.png)
 
-## Faces and Poses
+## 脸部和姿势
 ### OpenPose
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_openpose.png)
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_openposev2.png)
@@ -223,7 +223,7 @@ Credit to https://huggingface.co/thibaud/controlnet-sd21 for most examples below
 ### DensePose
 ![](./examples/example_densepose.png)
 
-## Semantic Segmantation
+## 语义分割
 ### OneFormer ADE20K Segmentor
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_ade20k.png)
 
@@ -234,43 +234,43 @@ Credit to https://huggingface.co/thibaud/controlnet-sd21 for most examples below
 ### Color Pallete for T2I-Adapter
 ![](https://huggingface.co/thibaud/controlnet-sd21/resolve/main/example_color.png)
 
-## Optical Flow
+## 光流 - Optical Flow
 ### Unimatch
 ![](./examples/example_unimatch.png)
 
-## Recolor
+## 重新着色 - Recolor
 ![](./examples/example_recolor.png)
 
-# Testing workflow
+# 测试工作流程
 https://github.com/Fannovel16/comfyui_controlnet_aux/blob/master/tests/test_cn_aux_full.json
 ![](https://github.com/Fannovel16/comfyui_controlnet_aux/blob/master/tests/pose.png?raw=true)
 
-# Q&A:
-## Why some nodes doesn't appear after I installed this repo?
+# 问答：
+## 为什么在我安装了这个仓库后，有些节点没有出现？
 
-This repo has a new mechanism which will skip any custom node can't be imported. If you meet this case, please create a issue on [Issues tab](https://github.com/Fannovel16/comfyui_controlnet_aux/issues) with the log from the command line.
+这个仓库有一个新的机制，会跳过任何无法导入的自定义节点。如果你遇到这种情况，请在[Issues tab](https://github.com/Fannovel16/comfyui_controlnet_aux/issues)上创建一个issue，并附上命令行中的日志。
 
-## DWPose/AnimalPose only uses CPU so it's so slow. How can I make it use GPU?
-There are two ways to speed-up DWPose: using TorchScript checkpoints (.torchscript.pt) checkpoints or ONNXRuntime (.onnx). TorchScript way is little bit slower than ONNXRuntime but doesn't require any additional library and still way way faster than CPU. 
+## DWPose/AnimalPose 只使用CPU，所以速度很慢。我怎样才能让它使用GPU？
+有两种方法可以加速DWPose：使用TorchScript检查点（.torchscript.pt）或ONNXRuntime（.onnx）。TorchScript方式比ONNXRuntime稍慢，但不需要任何额外的库，并且仍然比CPU快很多。
 
-A torchscript bbox detector is compatiable with an onnx pose estimator and vice versa.
+一个torchscript的边界框检测器可以与一个onnx的姿态估计器兼容，反之亦然。
 ### TorchScript
-Set `bbox_detector` and `pose_estimator` according to this picture. You can try other bbox detector endings with `.torchscript.pt` to reduce bbox detection time if input images are ideal.
+根据这张图片设置`bbox_detector`和`pose_estimator`。如果输入图像理想，你可以尝试其他以`.torchscript.pt`结尾的边界框检测器来减少边界框检测时间。
 ![](./examples/example_torchscript.png)
 ### ONNXRuntime
-If onnxruntime is installed successfully and the checkpoint used endings with `.onnx`, it will replace default cv2 backend to take advantage of GPU. Note that if you are using NVidia card, this method currently can only works on CUDA 11.8 (ComfyUI_windows_portable_nvidia_cu118_or_cpu.7z) unless you compile onnxruntime yourself.
+如果onnxruntime安装成功，并且使用的检查点以`.onnx`结尾，它将替换默认的cv2后端以利用GPU。请注意，如果你使用的是NVidia显卡，这种方法目前只能在CUDA 11.8（ComfyUI_windows_portable_nvidia_cu118_or_cpu.7z）上工作，除非你自己编译onnxruntime。
 
-1. Know your onnxruntime build:
-* * NVidia CUDA 11.x or bellow/AMD GPU: `onnxruntime-gpu`
-* * NVidia CUDA 12.x: `onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/`
-* * DirectML: `onnxruntime-directml`
-* * OpenVINO: `onnxruntime-openvino`
+1. 了解你的onnxruntime构建：
+   - **NVidia CUDA 11.x 或以下/AMD GPU**: `onnxruntime-gpu`
+   - **NVidia CUDA 12.x**: `onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/`
+   - **DirectML**: `onnxruntime-directml`
+   - **OpenVINO**: `onnxruntime-openvino`
 
-Note that if this is your first time using ComfyUI, please test if it can run on your device before doing next steps.
+   请注意，如果你是第一次使用ComfyUI，请先测试它是否能在你的设备上运行，然后再进行下一步。
 
-2. Add it into `requirements.txt`
+2. 将其添加到`requirements.txt`中
 
-3. Run `install.bat` or pip command mentioned in Installation
+3. 运行`install.bat`或安装部分提到的pip命令
 
 ![](./examples/example_onnx.png)
 
@@ -312,4 +312,4 @@ Note that if this is your first time using ComfyUI, please test if it can run on
   </picture>
 </a>
 
-Thanks for yalls supports. I never thought the graph for stars would be linear lol.
+感谢大家的支持。我从未想过星星的图表会是线性的，哈哈。
